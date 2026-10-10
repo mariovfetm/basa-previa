@@ -1,0 +1,177 @@
+/* ============================================================================
+   BASA · Branch Assist — Design Tokens
+   Fonte canônica: "BASA - Design System DROP 1.docx" (W3C DTCG)
+   + tokens-superapp.json (tokens de componente do Figma IBK/MBK)
+   Confirmado contra a marca oficial (marca-basa.zip): #003C2D e #00E12D
+   ----------------------------------------------------------------------------
+   Arquitetura: Primitivos -> Semânticos -> Componentes
+   Componentes NUNCA consomem primitivos diretamente.
+   ========================================================================== */
+
+:root {
+  /* ---------- PRIMITIVOS · Brand / Primary ---------- */
+  --c-verde-light:        #c5ffd8;
+  --c-verde-padrao:       #00e144;
+  --c-verde-padrao-2:     #00d84f;
+  --c-verde-escuro-1:     #00661c;
+  --c-verde-escuro-2:     #003c2d;
+  --c-verde-escuro-3:     #002724;
+  --c-neon-claro:         #f7ffcf;
+  --c-neon-padrao:        #e3ff6a;
+
+  /* ---------- PRIMITIVOS · Brand / Secondary ---------- */
+  --c-areia:              #f5f5c8;
+  --c-argila:             #b9c88c;
+  --c-cipo:               #7d8c4b;
+  --c-cipo-escuro:        #566615;
+  --c-musgo:              #416214;
+
+  /* ---------- PRIMITIVOS · Neutral ---------- */
+  --c-neutral-0:          #ffffff;
+  --c-neutral-25:         #fbfbfb;
+  --c-neutral-50:         #f7f7f7;
+  --c-neutral-60:         #efefef;
+  --c-neutral-75:         #cccccc;
+  --c-neutral-200:        #a3a3a3;
+  --c-neutral-300:        #7a7a7a;
+  --c-neutral-400:        #525252;
+  --c-neutral-600:        #000000;
+
+  /* ---------- PRIMITIVOS · Feedback ---------- */
+  --c-info-25:            #f5f9ff;
+  --c-info-50:            #e5eeff;
+  --c-info-100:           #0561eb;
+  --c-info-150:           #04409b;
+  --c-info-200:           #021f4b;
+
+  --c-success-25:         #ebffef;
+  --c-success-50:         #ccffd6;
+  --c-success-100:        #007a18;
+  --c-success-150:        #00470e;
+  --c-success-solid:      #00e12d;
+
+  --c-warning-25:         #f9f2e6;
+  --c-warning-50:         #feebcd;
+  --c-warning-100:        #755b1e;
+  --c-warning-150:        #4a3a13;
+  --c-warning-200:        #2b2a08;
+  --c-alert-solid:        #d38d1d;
+
+  --c-destructive-25:     #fcf0ee;
+  --c-destructive-50:     #fad7d1;
+  --c-destructive-100:    #aa3622;
+  --c-destructive-150:    #7a2517;
+  --c-destructive-200:    #4c180f;
+
+  /* ---------- SEMÂNTICOS · Background (tema Light) ---------- */
+  --bg-default:               var(--c-neutral-25);
+  --bg-secondary:             var(--c-neutral-50);
+  --bg-surface:               var(--c-neutral-0);
+  --bg-tertiary:              var(--c-verde-padrao);
+  --bg-selected:              var(--c-verde-padrao);
+  --bg-emphasized:            var(--c-verde-padrao);
+  --bg-success:               var(--c-success-solid);
+  --bg-success-secondary:     var(--c-success-50);
+  --bg-alert:                 var(--c-alert-solid);
+  --bg-alert-secondary:       var(--c-warning-50);
+  --bg-destructive:           var(--c-destructive-100);
+  --bg-destructive-secondary: var(--c-destructive-50);
+  --bg-info-secondary:        var(--c-info-50);
+  --bg-inverse:               var(--c-verde-escuro-2);
+  --bg-inverse-deep:          var(--c-verde-escuro-3);
+
+  /* ---------- SEMÂNTICOS · Text ---------- */
+  --tx-default:               var(--c-neutral-600);
+  --tx-primary:               var(--c-neutral-400);
+  --tx-secondary:             var(--c-neutral-300);
+  --tx-disabled:              var(--c-neutral-200);
+  --tx-on-emphasis:           var(--c-verde-escuro-3);
+  --tx-on-inverse:            var(--c-neutral-0);
+  --tx-emphasized:            var(--c-verde-escuro-1);
+  --tx-destructive:           var(--c-destructive-200);
+  --tx-destructive-secondary: var(--c-destructive-100);
+  --tx-success:               var(--c-success-100);
+  --tx-warning:               var(--c-warning-100);
+  --tx-info:                  var(--c-info-100);
+
+  /* ---------- SEMÂNTICOS · Border ---------- */
+  --bd-neutral:               var(--c-neutral-75);
+  --bd-subtle:                var(--c-neutral-60);
+  --bd-emphasized:            var(--c-verde-padrao);
+  --bd-destructive:           var(--c-destructive-100);
+  --bd-disabled:              var(--c-neutral-200);
+
+  /* ---------- SEMÂNTICOS · Icon ---------- */
+  --ic-default:               var(--c-neutral-400);
+  --ic-secondary:             var(--c-neutral-300);
+  --ic-emphasized:            var(--c-verde-escuro-1);
+  --ic-success:               var(--c-success-100);
+  --ic-destructive-secondary: var(--c-destructive-100);
+
+  /* ---------- TIPOGRAFIA ---------- */
+  --ff-primary:   'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --ff-secondary: 'Inter Tight', 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* escala desktop (tablet 1280x800 usa desktop) */
+  --fs-2xs: 10px;  --lh-2xs: 12px;
+  --fs-xs:  12px;  --lh-xs:  14px;
+  --fs-sm:  14px;  --lh-sm:  16px;
+  --fs-base:16px;  --lh-base:20px;
+  --fs-lg:  18px;  --lh-lg:  24px;
+  --fs-xl:  20px;  --lh-xl:  26px;
+  --fs-2xl: 24px;  --lh-2xl: 28px;
+  --fs-3xl: 32px;  --lh-3xl: 36px;
+  --fs-4xl: 46px;  --lh-4xl: 48px;
+  --fs-5xl: 54px;  --lh-5xl: 60px;
+
+  /* ---------- ESPAÇAMENTO (múltiplos de 4) ---------- */
+  --sp-4: 4px;   --sp-8: 8px;   --sp-12: 12px; --sp-16: 16px;
+  --sp-20: 20px; --sp-24: 24px; --sp-32: 32px; --sp-40: 40px;
+  --sp-48: 48px; --sp-64: 64px;
+
+  /* ---------- RAIO ---------- */
+  --r-sm: 4px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-full: 9999px;
+
+  /* ---------- ELEVAÇÃO (token "IBK Card" do Figma) ---------- */
+  --sh-card: 0 1px 16px 0 #00000014;
+  --sh-raised: 0 4px 24px 0 #0000001f;
+  --sh-modal: 0 16px 48px 0 #00000029;
+
+  /* ---------- CONTROLES DE ACESSIBILIDADE (ADR-0003 D5) ----------
+     accessibilityProfile.fontScale e extendedTimeouts são
+     aplicados por estas duas variáveis, em runtime.            */
+  --a11y-font-scale: 1;
+  --a11y-timeout-factor: 1;
+
+  /* alvo de toque mínimo — NFR-18 (>= 48dp) */
+  --touch-min: 48px;
+  --touch-customer: 64px;
+}
+
+/* ===========================================================================
+   MODO CLIENTE em ALTO CONTRASTE — highContrast: true
+   NFR-18 exige contraste >= 7:1. Preto puro sobre branco = 21:1.
+   ========================================================================= */
+[data-contrast="high"] {
+  --bg-default: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-secondary: #ffffff;
+  --tx-default: #000000;
+  --tx-primary: #000000;
+  --tx-secondary: #1a1a1a;
+  --bd-neutral: #000000;
+  --bd-subtle: #000000;
+  --ic-default: #000000;
+  --ic-secondary: #000000;
+  /* verde padrão sobre branco não atinge 7:1 para texto;
+     em alto contraste a ênfase usa o verde escuro 1 */
+  --tx-emphasized: #004513;
+  --bg-emphasized: #004513;
+  --tx-on-emphasis: #ffffff;
+}

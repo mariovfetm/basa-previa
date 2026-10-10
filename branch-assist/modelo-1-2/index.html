@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-mode="OPERATOR_MODE" data-contrast="normal">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Branch Assist · Banco da Amazônia</title>
+<meta name="description" content="Protótipo navegável do Branch Assist do Banco da Amazônia: abertura de conta assistida (E00 a E14) e atendimento assistido (S00 a S31), com dados fictícios.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#003C2D">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="proto" role="note">
+    <b>Protótipo navegável · Branch Assist</b>
+    <span>Dados fictícios. Nada do que é digitado sai deste navegador.</span>
+  </div>
+
+  <!-- ===================== CONSOLE DE CONTROLE =====================
+       Fora do aplicativo. Existe para demonstrar, numa apresentação,
+       os controles que o dossiê exige mas que não aparecem na tela.
+  ================================================================== -->
+  <div class="console">
+    <div class="console__grid">
+
+      <div class="console__col">
+        <div class="console__t">Sessão assistida · A01</div>
+        <div class="console__row">
+          <span class="console__lbl">Canal</span>
+          <span class="console__val" id="cv-channel">BRANCH</span>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Ponto</span>
+          <span class="console__val" id="cv-point">0108-BRAGANÇA</span>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">sessionId</span>
+          <span class="console__val" id="cv-session">—</span>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">deviceMode</span>
+          <span class="console__val" id="cv-mode">OPERATOR</span>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">handoffId</span>
+          <span class="console__val" id="cv-handoff">—</span>
+        </div>
+      </div>
+
+      <div class="console__col">
+        <div class="console__t">Perfil de acessibilidade · D5</div>
+        <div class="console__row">
+          <span class="console__lbl">Fonte ampliada</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-a11y="fontScale"></button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Alto contraste</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-a11y="highContrast"></button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Guia por áudio</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-a11y="audioGuidance"></button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Tempo estendido</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-a11y="extendedTimeouts"></button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Linguagem simples</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-a11y="simplifiedLanguage"></button>
+        </div>
+      </div>
+
+      <div class="console__col">
+        <div class="console__t">Cenário de demonstração</div>
+        <div class="seg mb-8" id="seg-persona" role="tablist">
+          <button role="tab" aria-selected="true"  data-persona="dona-maria">Dona Maria</button>
+          <button role="tab" aria-selected="false" data-persona="padrao">Padrão</button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Acompanhante</span>
+          <button class="switch switch--sm" role="switch" aria-checked="true" data-flag="companion"></button>
+        </div>
+        <div class="console__row">
+          <span class="console__lbl">Navegação livre</span>
+          <button class="switch switch--sm" role="switch" aria-checked="false" data-flag="freeNav" title="Permite saltar etapas pelo trilho durante uma apresentação. O botão Avançar continua respeitando os portões."></button>
+        </div>
+        <div class="console__t mt-16">Resultado Valid · A06</div>
+        <div class="seg" id="seg-valid" role="tablist">
+          <button role="tab" aria-selected="true"  data-valid="APPROVED">Aprova</button>
+          <button role="tab" aria-selected="false" data-valid="REJECTED_FACE">Face</button>
+          <button role="tab" aria-selected="false" data-valid="MANUAL_REVIEW">Manual</button>
+          <button role="tab" aria-selected="false" data-valid="INDETERMINATE">Indet.</button>
+        </div>
+      </div>
+
+      <div class="console__col">
+        <div class="console__t">Trilha de auditoria · I07</div>
+        <div class="log" id="auditlog"></div>
+        <button class="btn btn--outline mt-8" id="btn-matriz" style="width:100%">
+          Rastreabilidade dos 106 requisitos
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== DISPOSITIVO ===================== -->
+  <div class="device-frame"><div class="device" id="device">
+
+    <!-- Barra de modo — sempre visível, é o controle central da ADR-0003 D4 -->
+    <div class="modebar">
+      <div class="modebar__left">
+        <span class="modebar__dot"></span>
+        <span id="mb-mode">Modo funcionário</span>
+        <span class="modebar__meta" id="mb-scope">Esteira de atendimento · acesso completo</span>
+      </div>
+      <div class="modebar__right">
+        <span class="modebar__meta" id="mb-session">sessão —</span>
+        <span class="modebar__meta" id="mb-timer"></span>
+      </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <div class="topbar">
+      <div class="brand">
+        <img class="brand__logo" src="assets/marca-basa/logo/BASA_logoRegular.svg" alt="Banco da Amazônia">
+        <span class="brand__div"></span>
+        <span class="brand__app">Branch Assist</span>
+        <span class="brand__tag" id="tag-module">Onboarding assistido</span>
+      </div>
+      <div class="operator">
+        <div class="operator__id">
+          <div class="operator__name">Ana Paula Moreira</div>
+          <div class="operator__role">Gerente de Relacionamento · 0108 Bragança</div>
+        </div>
+        <div class="avatar" aria-hidden="true">AP</div>
+      </div>
+    </div>
+
+    <!-- Corpo -->
+    <div class="body">
+
+      <!-- Navegação de etapas -->
+      <nav class="rail" aria-label="Etapas do atendimento">
+        <div class="rail__head">
+          <div class="rail__module" id="rail-module">Onboarding assistido</div>
+          <div class="rail__case" id="rail-case">Nova proposta</div>
+          <div class="rail__cpf" id="rail-cpf">Aguardando identificação</div>
+        </div>
+        <div class="rail__switch" role="tablist" aria-label="Módulo">
+          <button role="tab" aria-selected="true"  data-module="onb">Abertura</button>
+          <button role="tab" aria-selected="false" data-module="srv">Atendimento</button>
+        </div>
+        <ul class="rail__steps" id="rail-steps"></ul>
+        <div class="rail__legend">
+          <span class="step__mode step__mode--op"></span> <b>Funcionário</b> conduz ·
+          <span class="step__mode step__mode--cust"></span> <b>Cliente</b> sozinha, tablet nas mãos
+        </div>
+      </nav>
+
+      <!-- Painel -->
+      <main class="canvas">
+        <div class="canvas__scroll" id="canvas"></div>
+        <div class="actionbar">
+          <div class="actionbar__hint" id="hint"></div>
+          <div class="actionbar__grp">
+            <button class="btn btn--ghost" id="btn-back">Voltar</button>
+            <button class="btn btn--cta" id="btn-next">Avançar</button>
+          </div>
+        </div>
+      </main>
+
+    </div>
+
+    <!-- Overlays injetados por JS -->
+    <div id="overlay-host"></div>
+
+  </div>
+  </div>
+
+  <div class="legend">
+    <b>Protótipo de jornada · Branch Assist.</b>
+    Design System BASA (DROP 1 · W3C DTCG) com a marca institucional.
+    Rastreabilidade: Anexo I do edital (planilha Branch Assist Scope de 20/05/2026) · ADR-0003 v3.0 · Dossiê BASA-B15-BA-026 v2.0.
+    <br>Dados exibidos são fictícios. Nenhuma chamada de rede é feita: o modelo simula as interfaces A01 a A14 e I00 a I35 em memória.
+  </div>
+
+</div>
+
+<div id="matriz-host"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/state.js"></script>
+<script src="js/reqs.js"></script>
+<script src="js/media.js"></script>
+<script src="js/screens-onb-a.js"></script>
+<script src="js/screens-onb-b.js"></script>
+<script src="js/screens-onb-c.js"></script>
+<script src="js/screens-srv-a.js"></script>
+<script src="js/screens-srv-b.js"></script>
+<script src="js/screens-inv-a.js"></script>
+<script src="js/screens-inv-b.js"></script>
+<script src="js/screens-cred-a.js"></script>
+<script src="js/screens-cred-b.js"></script>
+<script src="js/screens-ops-a.js"></script>
+<script src="js/screens-ops-b.js"></script>
+<script src="js/screens-cc-a.js"></script>
+<script src="js/screens-cc-b.js"></script>
+<script src="js/screens-card-a.js"></script>
+<script src="js/screens-card-b.js"></script>
+<script src="js/matriz.js"></script>
+<script src="js/app.js"></script>
+<div id="aviso-prototipo" aria-hidden="true" style="position:fixed;left:12px;bottom:12px;z-index:2147483647;pointer-events:none;
+font:600 11px/1 Inter, system-ui, sans-serif;letter-spacing:.02em;color:#003c2d;background:#e3ff6a;
+padding:6px 10px;border-radius:999px;opacity:.9">Protótipo Deskcorp · dados fictícios · 667023d</div>
+</body>
+</html>
