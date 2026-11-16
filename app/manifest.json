@@ -1,0 +1,37 @@
+{
+    "name": "Banco da Amazônia",
+    "short_name": "BASA",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#003C2D",
+    "theme_color": "#003C2D",
+    "description": "Aplicativo do Banco da Amazônia: conta, Pix, pagamentos, cartões, empréstimos e crédito especializado.",
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "categories": ["finance", "business"],
+    "lang": "pt-BR",
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

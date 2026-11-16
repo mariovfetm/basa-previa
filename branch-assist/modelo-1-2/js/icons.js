@@ -1,0 +1,73 @@
+/* ============================================================================
+   Ícones — traçado 1.5px, estilo alinhado à biblioteca Icons-Basa
+   Uso: ico('user', 20) -> string SVG
+   ========================================================================== */
+const ICO = {
+  user:      '<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+  users:     '<circle cx="9" cy="8" r="3.5"/><path d="M2 21v-1a5.5 5.5 0 0 1 5.5-5.5h3A5.5 5.5 0 0 1 16 20v1"/><path d="M16.5 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a5.5 5.5 0 0 1 4 5.3V21"/>',
+  shield:    '<path d="M12 3l7.5 3v5.5c0 4.5-3 8.3-7.5 9.5-4.5-1.2-7.5-5-7.5-9.5V6L12 3z"/>',
+  shieldOk:  '<path d="M12 3l7.5 3v5.5c0 4.5-3 8.3-7.5 9.5-4.5-1.2-7.5-5-7.5-9.5V6L12 3z"/><path d="M8.8 11.8l2.3 2.3 4.1-4.4"/>',
+  lock:      '<rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>',
+  key:       '<circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M17 4h3v3"/>',
+  doc:       '<path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/>',
+  docCheck:  '<path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/><path d="M9 15l2 2 3.5-3.5"/>',
+  camera:    '<rect x="3" y="7" width="18" height="13" rx="2.5"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8.5 7l1.2-2.5h4.6L15.5 7"/>',
+  face:      '<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/><path d="M8.8 15a4.5 4.5 0 0 0 6.4 0"/>',
+  fingerprint:'<path d="M12 3a9 9 0 0 1 9 9"/><path d="M12 7a5 5 0 0 1 5 5v2"/><path d="M12 11a1.5 1.5 0 0 1 1.5 1.5V16"/><path d="M7 12a5 5 0 0 1 1.5-3.5"/><path d="M3 12a9 9 0 0 1 2.6-6.3"/><path d="M6.5 18.5A7 7 0 0 1 5 14v-2"/><path d="M10 20a5 5 0 0 1-1.2-2"/>',
+  pen:       '<path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M15 5l4 4"/>',
+  signature: '<path d="M3 17c3.5 0 4-9 6.5-9S12 17 15 17s2-5 4-5"/><path d="M3 21h18"/>',
+  check:     '<path d="M4.5 12.5l5 5L19.5 7"/>',
+  checkCircle:'<circle cx="12" cy="12" r="9"/><path d="M8.3 12.2l2.6 2.6 4.8-5.1"/>',
+  x:         '<path d="M6 6l12 12M18 6L6 18"/>',
+  xCircle:   '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+  alert:     '<path d="M12 3.5l9 16H3l9-16z"/><path d="M12 10v4.5M12 17.2v.3"/>',
+  info:      '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8v.3"/>',
+  clock:     '<circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/>',
+  search:    '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/>',
+  wallet:    '<rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="17" cy="14.5" r="1.2"/>',
+  card:      '<rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/>',
+  bank:      '<path d="M3 9.5L12 4l9 5.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9 20v-6h6v6"/>',
+  money:     '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.8h3.8a1.7 1.7 0 0 1 0 3.4H9.5h4.2a1.7 1.7 0 0 1 0 3.4H9.5"/>',
+  pix:       '<path d="M12 3l4 4-4 4-4-4 4-4z"/><path d="M12 13l4 4-4 4-4-4 4-4z"/><path d="M3.5 12l4-4 4 4-4 4-4-4z"/><path d="M12.5 12l4-4 4 4-4 4-4-4z"/>',
+  print:     '<path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="7.5" rx="2"/><path d="M7 14h10v6.5H7z"/>',
+  speaker:   '<path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M15.5 9.5a4 4 0 0 1 0 5"/><path d="M18 7a7.5 7.5 0 0 1 0 10"/>',
+  headphone: '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2.5" y="14" width="4.5" height="6.5" rx="2"/><rect x="17" y="14" width="4.5" height="6.5" rx="2"/>',
+  eye:       '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+  eyeOff:    '<path d="M4 4l16 16"/><path d="M9.5 6.1A9.8 9.8 0 0 1 12 5.8c6 0 9.5 6.2 9.5 6.2a17 17 0 0 1-2.4 3.2"/><path d="M6.2 8.2A16.6 16.6 0 0 0 2.5 12S6 18.2 12 18.2a9.7 9.7 0 0 0 3.6-.7"/><path d="M9.9 10.1a3 3 0 0 0 4.1 4.2"/>',
+  tablet:    '<rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+  handoff:   '<path d="M14 4h6v6"/><path d="M20 4l-7.5 7.5"/><path d="M10 20H4v-6"/><path d="M4 20l7.5-7.5"/>',
+  refresh:   '<path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"/><path d="M20.5 4v4.5H16"/>',
+  upload:    '<path d="M12 16V4.5"/><path d="M7.5 9L12 4.5 16.5 9"/><path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"/>',
+  download:  '<path d="M12 4.5V16"/><path d="M7.5 11.5L12 16l4.5-4.5"/><path d="M4 18v.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V18"/>',
+  arrowRight:'<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>',
+  arrowLeft: '<path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/>',
+  gavel:     '<path d="M13.5 3.5l7 7-2.5 2.5-7-7z"/><path d="M11 6L4 13l3.5 3.5L14.5 9.5"/><path d="M3 21h10"/>',
+  scale:     '<path d="M12 3.5V21"/><path d="M6 21h12"/><path d="M12 6.5L4.5 8.5 7 14h5L7 8.5"/><path d="M12 6.5L19.5 8.5 17 14h-5l5-5.5"/>',
+  accessibility:'<circle cx="12" cy="4.8" r="1.8"/><path d="M5.5 8.5h13"/><path d="M12 8.5V14"/><path d="M12 14l-2.5 7"/><path d="M12 14l2.5 7"/>',
+  contrast:  '<circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor" stroke="none"/>',
+  textSize:  '<path d="M3 7V5h8v2"/><path d="M7 5v14"/><path d="M13 12v-1.5h7V12"/><path d="M16.5 10.5V19"/>',
+  envelope:  '<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6.5L21 7"/>',
+  atm:       '<rect x="4" y="3" width="16" height="18" rx="2.5"/><rect x="7.5" y="6.5" width="9" height="5" rx="1"/><path d="M8 15h3M13 15h3M8 18h8"/>',
+  keypad:    '<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="12" cy="8.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><circle cx="8.5" cy="15.5" r="1"/><circle cx="12" cy="15.5" r="1"/><circle cx="15.5" cy="15.5" r="1"/>',
+  building:  '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h3M13 7h3M8 11h3M13 11h3M8 15h3M13 15h3"/><path d="M10 21v-3h4v3"/>',
+  chart:     '<path d="M3 21h18"/><rect x="5" y="12" width="3.5" height="6"/><rect x="10.5" y="7" width="3.5" height="11"/><rect x="16" y="10" width="3.5" height="8"/>',
+  list:      '<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>',
+  file:      '<path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/><path d="M9 13h6M9 17h4"/>',
+  folder:    '<path d="M3 7.5A2 2 0 0 1 5 5.5h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5z"/>',
+  bell:      '<path d="M18 10a6 6 0 0 0-12 0c0 5-2 6.5-2 6.5h16S18 15 18 10z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/>',
+  link:      '<path d="M10 13a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7L11.5 6"/><path d="M14 11a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 0 0 5.7 5.7L12.5 18"/>',
+  swap:      '<path d="M7 7h12l-3-3"/><path d="M17 17H5l3 3"/>',
+  power:     '<path d="M12 3v9"/><path d="M6.5 6.8a8 8 0 1 0 11 0"/>',
+  hourglass: '<path d="M7 3h10"/><path d="M7 21h10"/><path d="M8 3v3.5L12 11l4-4.5V3"/><path d="M8 21v-3.5L12 13l4 4.5V21"/>',
+  scan:      '<path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M4 12h16"/>',
+  flag:      '<path d="M5 21V4"/><path d="M5 5h11l-1.5 4L16 13H5"/>',
+  minus:     '<path d="M5 12h14"/>',
+  plus:      '<path d="M12 5v14M5 12h14"/>',
+};
+
+function ico(name, size = 20, sw = 1.5) {
+  const d = ICO[name] || ICO.info;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"
+    aria-hidden="true" focusable="false">${d}</svg>`;
+}
